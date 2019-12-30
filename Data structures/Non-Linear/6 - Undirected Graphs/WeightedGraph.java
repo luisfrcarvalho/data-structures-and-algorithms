@@ -61,6 +61,31 @@ public class WeightedGraph {
        toNode.addEge(fromNode, weight);
     }
 
+    public boolean hasCycle() {
+
+        var visited = new HashSet<Node>();
+
+        for(var node : nodes.values()) {
+            if(!visited.contains(node) && hasCycle(node, null, visited))
+                return true;
+        }
+
+        return false;
+    }
+
+    private boolean hasCycle(Node node, Node parent, Set<Node> visited) {
+        visited.add(node);
+
+        for(var edge : node.edges){
+            if(edge.to == parent)
+                continue;
+
+            if(visited.contains(edge.to) ||hasCycle(edge.to, node, visited))
+                return true;
+        }
+        return false;
+    }
+
     public class NodeEntry {
         private Node node;
         private int priority;
@@ -113,6 +138,42 @@ public class WeightedGraph {
         }
 
         return build(previousNodes, toNode);
+    }
+
+    /*
+     * Prim's Algorithm - Minimum spanning tree
+     */
+    public WeightedGraph minimumSpanningTree() {
+       var tree = new WeightedGraph();
+
+       if(nodes.isEmpty())
+           return tree;
+
+       PriorityQueue<Edge> edges = new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+       var startNode = nodes.values().iterator().next();
+       edges.addAll(startNode.edges);
+       tree.addNode(startNode.label);
+
+       if(edges.isEmpty())
+            return tree;
+
+       while(tree.nodes.size() < nodes.size()) {
+           var minimumEdge = edges.remove();
+           var nextNode = minimumEdge.to;
+
+           if(tree.nodes.containsKey(nextNode.label))
+               continue;
+
+           tree.addNode(nextNode.label);
+           tree.addEdge(minimumEdge.from.label, nextNode.label, minimumEdge.weight);
+
+           for(var edge : nextNode.edges) {
+               if(!tree.nodes.containsKey(edge.to.label))
+                   edges.add(edge);
+           }
+       }
+
+       return tree;
     }
 
     private Path build(Map<Node, Node> previousNodes, Node toNode) {
