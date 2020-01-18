@@ -9,7 +9,7 @@
 - We scan the array from left to right and if items are out of order we swap them;
 - At the end of each pass the next largest item bubbles up and moves to its correct position;
 
-**Best case scenario** (Sorted Array): O(n) 
+**Best case scenario** (Sorted Array): O(n)  
 **Worst case scenario**: O(n^2)
 
 ### Selection Sort
@@ -18,7 +18,7 @@
 - It divides the array into two parts: Sorted and Unsorted;
 - It is called Selection Sort because at each pass we get the minimum value from the unsorted part and we move it to the right position;
 
-**Best case scenario** (Sorted Array): O(n^2)
+**Best case scenario** (Sorted Array): O(n^2)  
 **Worst case scenario**: O(n^2)
 
 ### Insertion Sort
@@ -27,7 +27,7 @@
 - It divides the array into two parts: Sorted and Unsorted;
 - Instead of swapping items, we shifted them to the right;
 
-**Best case scenario** (Sorted Array): O(n)
+**Best case scenario** (Sorted Array): O(n)  
 **Worst case scenario** (Sorted Array in descending order): O(n^2)
 
 
@@ -39,8 +39,8 @@
 - We need to be aware that an array with only one item is already sorted;
 - This algorithm is faster than the previous. However, it comes with an aditional cost, the cost of allocating additional space.
 
-**Space**: O(n)
-**Best case scenario**: (Sorted Array): O(n * log n)
+**Space**: O(n)  
+**Best case scenario**: (Sorted Array): O(n * log n)   
 **Worst case scenario**: (Sorted Array in descending order): O(n * log n)
 
 ### Quick sort
@@ -52,7 +52,7 @@
 - When we choose a pivot, the pivot after the partitioning will move to his current position;
 
 
-**Best case scenario** (Pivot is in the middle): O(n * log n)
+**Best case scenario** (Pivot is in the middle): O(n * log n)  
 **Worst case scenario** (Pivot far from the middle): O(n^2)
 
 
@@ -69,7 +69,7 @@
     - Values are positive integers;
     - Most of the values in the range are present.
 
-**Space**: O(K)
+**Space**: O(K)  
 **Worst case scenario**: O(K + N) => **Linear**
 
 
@@ -80,6 +80,6 @@
 - **Bucket** = Item / numberOfBuckets
 - More buckets, easy to sort, but more space. (Time-memory trade-off)
 
-**Space**: O(K + N) => K number of buckets
-**Best case scenario**: O(K + N) => **Linear**
+**Space**: O(K + N) => K number of buckets  
+**Best case scenario**: O(K + N) => **Linear**  
 **Worst case scenario**: O(K + N^2) => Dependens on which algorithm we choose
